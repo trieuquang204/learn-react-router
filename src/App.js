@@ -1,24 +1,31 @@
-import React, { component } from "react";
-import { BrowserRouter as Router, Route, NavLink, Link, Switch } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import NotFound from "./components/NotFound";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Menu from "./components/Menu";
+import routes from './routes';
 
 
 
 function App() {
+  const showContentMenus = (routes) => {
+    var result = null;
+    if(routes.length > 0) {
+      result = routes.map((route, index) => {
+        return (
+          <Route path={route.path} exact={route.exact} component={route.main} key={index} />
+        )
+      })
+    }
+
+    return result;
+  }
+
   return (
     <Router>
       <div classNameName="App">
         <Menu/>
         {/* Noi dung  */}
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-          <Route component={NotFound} />
+          {showContentMenus(routes)}
         </Switch>
       </div>
     </Router>
