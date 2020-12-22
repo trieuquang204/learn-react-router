@@ -1,7 +1,8 @@
-import React, { component } from "react";
+import React from "react";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Products from "./components/Products";
 import NotFound from "./components/NotFound";
 import Menu from "./components/Menu";
 
@@ -20,6 +21,11 @@ const routes = [
     path: '/contact',
     exact: false,
     main: () => <Contact/>
+  },
+  {
+    path: '/products',
+    exact: false,
+    main: ({match}) => <Products match={match} />
   },
   {
     path: '',
